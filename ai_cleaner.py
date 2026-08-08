@@ -1,17 +1,28 @@
-"""
-==========================================================
-AI CLEANER MODULE
-DataForge AI
-==========================================================
-"""
-
+```python
 from google import genai
+
 from config import GOOGLE_API_KEY, MODEL_NAME
 
 
+# =========================================================
+# GEMINI CLIENT
+# =========================================================
 
-client = genai.Client(api_key=GOOGLE_API_KEY)
+def get_client():
 
+    if not GOOGLE_API_KEY:
+        raise ValueError(
+            "GOOGLE_API_KEY is not configured. "
+            "Please add GOOGLE_API_KEY in Streamlit Cloud Secrets "
+            "or your local .env file."
+        )
+
+    return genai.Client(api_key=GOOGLE_API_KEY)
+
+
+# =========================================================
+# GENERATE CHART INSIGHTS
+# =========================================================
 
 def generate_chart_insights(df, chart_type, x_column, y_column=None):
     """
@@ -27,25 +38,13 @@ You are an Expert Data Scientist and Business Intelligence Analyst.
 
 Analyze the following dataset sample and visualization.
 
-====================================================
-DATASET SAMPLE
-====================================================
-
 {sample}
-
-====================================================
-VISUALIZATION DETAILS
-====================================================
 
 Chart Type : {chart_type}
 
 X Axis : {x_column}
 
 Y Axis : {y_column}
-
-====================================================
-GENERATE A PROFESSIONAL REPORT
-====================================================
 
 Provide the report in Markdown.
 
@@ -71,6 +70,8 @@ Provide the report in Markdown.
 
 Keep the explanation simple, professional and detailed.
 """
+
+        client = get_client()
 
         response = client.models.generate_content(
             model=MODEL_NAME,
@@ -100,7 +101,9 @@ Please verify:
 """
 
 
-
+# =========================================================
+# GENERATE DATASET SUMMARY
+# =========================================================
 
 def generate_dataset_summary(df):
     """
@@ -143,6 +146,8 @@ Generate a professional report with:
 Return Markdown only.
 """
 
+        client = get_client()
+
         response = client.models.generate_content(
             model=MODEL_NAME,
             contents=prompt
@@ -158,6 +163,10 @@ Return Markdown only.
         return f"Dataset Summary Error: {e}"
 
 
+# =========================================================
+# ASK DATASET QUESTION
+# =========================================================
+
 def ask_dataset_question(df, question):
     """
     Ask questions about the uploaded dataset.
@@ -172,22 +181,17 @@ You are an expert Data Scientist.
 
 Below is a sample of the user's dataset.
 
-====================================================
-DATASET
-====================================================
-
 {sample}
-
-====================================================
-QUESTION
-====================================================
 
 {question}
 
 Answer the user's question clearly using the dataset.
+
 If the answer cannot be determined from the sample,
 state that more data may be required.
 """
+
+        client = get_client()
 
         response = client.models.generate_content(
             model=MODEL_NAME,
@@ -200,10 +204,13 @@ state that more data may be required.
         return "No response generated."
 
     except Exception as e:
+
         return f"AI Chat Error:\n\n{e}"
 
 
-
+# =========================================================
+# GENERATE CLEANING SUGGESTIONS
+# =========================================================
 
 def generate_cleaning_suggestions(df):
     """
@@ -218,10 +225,6 @@ def generate_cleaning_suggestions(df):
 You are a Senior Data Cleaning Expert.
 
 Analyze the dataset sample below.
-
-====================================================
-DATASET
-====================================================
 
 {sample}
 
@@ -250,6 +253,8 @@ Include:
 Return Markdown.
 """
 
+        client = get_client()
+
         response = client.models.generate_content(
             model=MODEL_NAME,
             contents=prompt
@@ -261,9 +266,13 @@ Return Markdown.
         return "No response generated."
 
     except Exception as e:
+
         return f"Cleaning Suggestion Error:\n\n{e}"
 
 
+# =========================================================
+# DATA QUALITY SCORE
+# =========================================================
 
 def generate_data_quality_score(df):
     """
@@ -273,9 +282,11 @@ def generate_data_quality_score(df):
     try:
 
         rows = len(df)
+
         cols = len(df.columns)
 
         missing = int(df.isnull().sum().sum())
+
         duplicates = int(df.duplicated().sum())
 
         total_cells = rows * cols
@@ -284,11 +295,13 @@ def generate_data_quality_score(df):
             return 0
 
         missing_ratio = missing / total_cells
+
         duplicate_ratio = duplicates / max(rows, 1)
 
         score = 100
 
         score -= missing_ratio * 60
+
         score -= duplicate_ratio * 40
 
         score = max(0, min(100, round(score)))
@@ -299,7 +312,9 @@ def generate_data_quality_score(df):
         return 0
 
 
-
+# =========================================================
+# QUALITY BADGE
+# =========================================================
 
 def get_quality_badge(score):
 
@@ -313,3 +328,5 @@ def get_quality_badge(score):
         return "🟠 Fair"
 
     return "🔴 Poor"
+```
+
