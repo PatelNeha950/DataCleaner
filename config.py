@@ -1,24 +1,31 @@
-"""
-=========================================
-DataForge AI SYSTEM
-Configuration File
-=========================================
-"""
-
 import os
 import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
+# =========================================================
+# GOOGLE GEMINI CONFIGURATION
+# =========================================================
+
+# Streamlit Cloud Secrets first
+try:
+    GOOGLE_API_KEY = st.secrets.get("GOOGLE_API_KEY", "")
+except Exception:
+    GOOGLE_API_KEY = ""
+
+# Local .env fallback
 if not GOOGLE_API_KEY:
-    st.warning("GOOGLE_API_KEY not found in .env file")
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 
+# Gemini model
 MODEL_NAME = "gemini-flash-latest"
 
 
+# =========================================================
+# APPLICATION CONFIGURATION
+# =========================================================
 
 APP_NAME = "DataForge AI"
 
@@ -37,12 +44,19 @@ LAYOUT = "wide"
 SIDEBAR_STATE = "expanded"
 
 
+# =========================================================
+# SUPPORTED FILES
+# =========================================================
+
 SUPPORTED_FILES = [
     "csv",
     "xlsx"
 ]
 
 
+# =========================================================
+# SESSION STATE
+# =========================================================
 
 SESSION_DATA = "dataset"
 
@@ -51,6 +65,9 @@ SESSION_CLEAN = "clean_dataset"
 SESSION_FILE = "uploaded_file"
 
 
+# =========================================================
+# COLORS
+# =========================================================
 
 PRIMARY = "#2563EB"
 
@@ -67,20 +84,22 @@ CARD = "#FFFFFF"
 TEXT = "#0F172A"
 
 
+# =========================================================
+# DATASET SETTINGS
+# =========================================================
 
 DEFAULT_ROWS = 20
 
 
+# =========================================================
+# PAGE CONFIGURATION
+# =========================================================
+
 def configure_page():
 
     st.set_page_config(
-
         page_title=PAGE_TITLE,
-
         page_icon=PAGE_ICON,
-
         layout=LAYOUT,
-
         initial_sidebar_state=SIDEBAR_STATE
-
     )
