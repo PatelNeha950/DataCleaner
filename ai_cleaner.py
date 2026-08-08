@@ -1,4 +1,4 @@
-```python
+
 from google import genai
 
 from config import GOOGLE_API_KEY, MODEL_NAME
