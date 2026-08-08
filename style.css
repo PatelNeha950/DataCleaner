@@ -1,7 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
 
-html, body, [class*="css"] {
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+html,
+body,
+[class*="css"] {
     font-family: 'Plus Jakarta Sans', -apple-system, sans-serif !important;
     color: #0F172A !important;
     -webkit-font-smoothing: antialiased;
@@ -9,17 +14,25 @@ html, body, [class*="css"] {
 
 .stApp {
     background-color: #F8FAFC !important;
-    background-image: 
+    background-image:
         radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 40%),
         radial-gradient(at 100% 0%, rgba(217, 70, 239, 0.15) 0px, transparent 35%),
         radial-gradient(at 50% 100%, rgba(14, 165, 233, 0.12) 0px, transparent 45%) !important;
     background-attachment: fixed !important;
 }
 
-#MainMenu, footer, header[data-testid="stHeader"] {
+/* Hide Streamlit menu/footer ONLY.
+   Do NOT hide the header because it contains the sidebar toggle. */
+#MainMenu,
+footer {
     visibility: hidden;
     height: 0px;
 }
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 section[data-testid="stSidebar"] {
     background-color: #FFFFFF !important;
@@ -44,6 +57,10 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
     font-weight: 500;
 }
 
+
+/* =========================================================
+   SIDEBAR NAVIGATION
+========================================================= */
 
 div[data-testid="stRadio"] > label {
     display: none;
@@ -83,7 +100,14 @@ div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
     display: none;
 }
 
-.glass, .bento-card, .hero-card {
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.glass,
+.bento-card,
+.hero-card {
     background: #FFFFFF;
     padding: 32px;
     border-radius: 20px;
@@ -92,12 +116,22 @@ div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
     margin-bottom: 24px;
 }
 
+
+/* =========================================================
+   HERO
+========================================================= */
+
 .hero-title {
     font-family: 'Outfit', sans-serif;
     font-size: 2.5rem;
     font-weight: 800;
     letter-spacing: -0.03em;
-    background: linear-gradient(135deg, #4F46E5 0%, #D946EF 50%, #06B6D4 100%);
+    background: linear-gradient(
+        135deg,
+        #4F46E5 0%,
+        #D946EF 50%,
+        #06B6D4 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 8px;
@@ -108,6 +142,11 @@ div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
     color: #475569;
     font-weight: 500;
 }
+
+
+/* =========================================================
+   METRIC CARDS
+========================================================= */
 
 .metric-card {
     background: #FFFFFF;
@@ -142,7 +181,6 @@ div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
     letter-spacing: -0.02em;
 }
 
-
 [data-testid="stMetric"] {
     background: #FFFFFF !important;
     border: 2px solid #EEF2FF !important;
@@ -152,19 +190,28 @@ div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
     box-shadow: 0 8px 20px -5px rgba(217, 70, 239, 0.1) !important;
 }
 
-div[data-testid="stButton"], 
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+div[data-testid="stButton"],
 div[data-testid="stDownloadButton"] {
     display: inline-block !important;
     width: auto !important;
 }
 
-.stButton > button, 
+.stButton > button,
 .stDownloadButton > button {
     width: auto !important;
     max-width: fit-content !important;
     white-space: nowrap !important;
     border-radius: 12px !important;
-    background: linear-gradient(135deg, #6366F1 0%, #D946EF 100%) !important;
+    background: linear-gradient(
+        135deg,
+        #6366F1 0%,
+        #D946EF 100%
+    ) !important;
     color: #FFFFFF !important;
     border: none !important;
     padding: 10px 24px !important;
@@ -176,7 +223,11 @@ div[data-testid="stDownloadButton"] {
 }
 
 .stButton > button:hover {
-    background: linear-gradient(135deg, #4F46E5 0%, #C084FC 100%) !important;
+    background: linear-gradient(
+        135deg,
+        #4F46E5 0%,
+        #C084FC 100%
+    ) !important;
     transform: translateY(-2px) !important;
     box-shadow: 0 14px 28px -4px rgba(99, 102, 241, 0.55) !important;
 }
@@ -186,14 +237,28 @@ div[data-testid="stDownloadButton"] {
 }
 
 .stDownloadButton > button {
-    background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%) !important;
+    background: linear-gradient(
+        135deg,
+        #10B981 0%,
+        #06B6D4 100%
+    ) !important;
     box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4) !important;
 }
 
 .stDownloadButton > button:hover {
-    background: linear-gradient(135deg, #059669 0%, #0891B2 100%) !important;
+    background: linear-gradient(
+        135deg,
+        #059669 0%,
+        #0891B2 100%
+    ) !important;
     box-shadow: 0 14px 28px -4px rgba(16, 185, 129, 0.55) !important;
 }
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
 .stTabs [data-baseweb="tab-list"] {
     gap: 6px;
     background-color: #F1F5F9;
@@ -223,7 +288,15 @@ div[data-testid="stDownloadButton"] {
     display: none;
 }
 
-input, textarea, select, div[data-baseweb="select"] {
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input,
+textarea,
+select,
+div[data-baseweb="select"] {
     border-radius: 10px !important;
     border: 2px solid #E2E8F0 !important;
     background-color: #FFFFFF !important;
@@ -232,10 +305,16 @@ input, textarea, select, div[data-baseweb="select"] {
     font-weight: 500 !important;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     border-color: #6366F1 !important;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
 }
+
+
+/* =========================================================
+   FILE UPLOADER
+========================================================= */
 
 [data-testid="stFileUploader"] {
     background: #FFFFFF;
@@ -250,6 +329,11 @@ input:focus, textarea:focus {
     border-color: #4F46E5;
 }
 
+
+/* =========================================================
+   DATAFRAME
+========================================================= */
+
 [data-testid="stDataFrame"] {
     border-radius: 14px;
     border: 2px solid #EEF2FF;
@@ -258,11 +342,21 @@ input:focus, textarea:focus {
     overflow: hidden;
 }
 
+
+/* =========================================================
+   CONTAINERS
+========================================================= */
+
 [data-testid="stVerticalBlock"] > div[style*="border"] {
     border-color: #EEF2FF !important;
     border-radius: 16px !important;
     background-color: #FFFFFF;
 }
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
 
 ::-webkit-scrollbar {
     width: 7px;
