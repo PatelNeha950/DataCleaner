@@ -1,4 +1,3 @@
-
 from google import genai
 
 from config import GOOGLE_API_KEY, MODEL_NAME
@@ -309,6 +308,7 @@ def generate_data_quality_score(df):
         return score
 
     except Exception:
+
         return 0
 
 
@@ -328,5 +328,3 @@ def get_quality_badge(score):
         return "🟠 Fair"
 
     return "🔴 Poor"
-```
-
