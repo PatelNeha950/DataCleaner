@@ -23,15 +23,12 @@ if not GOOGLE_API_KEY:
 # ---------------------------------------------------------
 # GEMINI MODEL SELECTION
 # ---------------------------------------------------------
-# Avoid 'gemini-flash-latest' on the Free Tier because it routes
-# to preview models capped at 20 requests/day.
-#
-# Recommended options for high Free Tier limits (1,000+ requests/day):
-# - "gemini-1.5-flash"      (Recommended workhorse)
+# Active, production-ready options:
+# - "gemini-2.5-flash"      (Recommended workhorse)
 # - "gemini-2.5-flash-lite" (Lightweight & fastest)
-# - "gemini-2.0-flash"      (Balanced multimodal)
+# - "gemini-2.0-flash"      (Stable fallback)
 # ---------------------------------------------------------
-MODEL_NAME = "gemini-1.5-flash"
+MODEL_NAME = "gemini-2.5-flash"
 
 
 # =========================================================
