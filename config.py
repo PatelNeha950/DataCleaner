@@ -27,7 +27,7 @@ if not GOOGLE_API_KEY:
 # - "gemini-2.5-flash"      (Recommended balance of quality & speed)
 # - "gemini-2.5-flash-lite" (Ultra-fast alternative)
 # ---------------------------------------------------------
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-pro-latest"
 
 
 # =========================================================
