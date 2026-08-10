@@ -23,10 +23,9 @@ if not GOOGLE_API_KEY:
 # ---------------------------------------------------------
 # GEMINI MODEL SELECTION
 # ---------------------------------------------------------
-# Active, production-ready options:
-# - "gemini-2.5-flash"      (Recommended workhorse)
-# - "gemini-2.5-flash-lite" (Lightweight & fastest)
-# - "gemini-2.0-flash"      (Stable fallback)
+# Validated against your API key:
+# - "gemini-2.5-flash"      (Recommended balance of quality & speed)
+# - "gemini-2.5-flash-lite" (Ultra-fast alternative)
 # ---------------------------------------------------------
 MODEL_NAME = "gemini-2.5-flash"
 
@@ -44,26 +43,11 @@ PAGE_ICON = "🧹"
 LAYOUT = "wide"
 SIDEBAR_STATE = "expanded"
 
-
-# =========================================================
-# SUPPORTED FILES
-# =========================================================
-
 SUPPORTED_FILES = ["csv", "xlsx"]
-
-
-# =========================================================
-# SESSION STATE KEYS
-# =========================================================
 
 SESSION_DATA = "dataset"
 SESSION_CLEAN = "clean_dataset"
 SESSION_FILE = "uploaded_file"
-
-
-# =========================================================
-# COLORS (UI THEME)
-# =========================================================
 
 PRIMARY = "#2563EB"
 SUCCESS = "#10B981"
@@ -73,17 +57,7 @@ BACKGROUND = "#F8FAFC"
 CARD = "#FFFFFF"
 TEXT = "#0F172A"
 
-
-# =========================================================
-# DATASET SETTINGS
-# =========================================================
-
 DEFAULT_ROWS = 20
-
-
-# =========================================================
-# PAGE CONFIGURATION
-# =========================================================
 
 def configure_page():
     st.set_page_config(
